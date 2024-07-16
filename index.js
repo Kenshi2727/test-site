@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static('public'));
 
-app.get('/',(req,res)=>res.sendFile('./views/index.html',{root:__dirname}));//specified root directory with absolute path
+app.get('/',(req,res)=>res.sendFile('./index.html',{root:__dirname}));//specified root directory with absolute path
 
 app.get('/create',(req,res)=>{
     res.render('create.ejs');
@@ -44,7 +44,7 @@ app.post('/update',(req,res)=>{
     }
     else{
         res.send('<h1>Post not found bosdhk!</h1>');
-        setTimeout(()=>res.sendFile('./views/index.html',{root:__dirname}),3000);
+        setTimeout(()=>res.sendFile('./index.html',{root:__dirname}),3000);
     }
    
 });
@@ -53,11 +53,11 @@ app.post('/edit',(req,res)=>{
     if(posts.length>0 && titles.includes(oldTitle)){
         posts[titles.indexOf(oldTitle)]=req.body.newPost;
         titles[titles.indexOf(oldTitle)]=req.body.newTitle;
-        res.sendFile('./views/index.html',{root:__dirname})
+        res.sendFile('./index.html',{root:__dirname})
     }
     else{
         res.send('<h1>Post not found bosdhk!</h1>');
-        setTimeout(()=>res.sendFile('./views/index.html',{root:__dirname}),3000);
+        setTimeout(()=>res.sendFile('./index.html',{root:__dirname}),3000);
     }
 });
 
@@ -67,18 +67,18 @@ app.post('/delete',(req,res)=>{
         //now deleting title
         titles.splice(titles.indexOf(req.body.current),1);
      
-        res.sendFile('./views/index.html',{root:__dirname})
+        res.sendFile('./index.html',{root:__dirname})
     }
     else{
         res.send('<h1>Post not found bosdhk!</h1>');
-        setTimeout(()=>res.sendFile('./views/index.html',{root:__dirname}),3000);
+        setTimeout(()=>res.sendFile('./index.html',{root:__dirname}),3000);
     }
    
     
 });
 
 app.post('/submit',(req,res)=>{
-    res.sendFile('./views/index.html',{root:__dirname});
+    res.sendFile('./index.html',{root:__dirname});
     posts.push(req.body.new);
     titles.push(req.body.title);
     // console.log(posts);
